@@ -31,7 +31,7 @@ function Landing() {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
       try {
-        const result = await axios.get('http://localhost:3001/products');
+        const result = await axios.get('/products');
         dispatch({ type: 'AXIOS_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'AXIOS_FAIL', payload: err.message });

@@ -25,8 +25,7 @@ export default function ProductScreen() {
   // const rating = sp.get('rating') || 'all';
   const order = sp.get('order') || 'ASC';
   const page = sp.get('page') || 1;
-  
-  console.log("soy query desde el front", query)
+
     useEffect(() => {
       dispatch(axiosCategories());
       dispatch(getOrder({ status: 'inCart' }))
@@ -39,7 +38,6 @@ export default function ProductScreen() {
     const filterPage = e.page || page;
     const filterCategory = e.category || category;
     const filterQuery = e.query || query;
-    // const filterRating = e.rating || rating;
     const filterPrice = e.price || price;
     const sortOrder = e.order || order;
     return `/search?category=${filterCategory}&page=${filterPage}&order=${sortOrder}&price=${filterPrice}&query=${filterQuery}`

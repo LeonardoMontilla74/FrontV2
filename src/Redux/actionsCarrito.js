@@ -14,7 +14,7 @@ export const clearCart = () => ({type:CLEAR_CART})
 
 
 export const postOrder = (order) => async (dispatch) => {
-var {data}= await axios.post(`http://localhost:3001/order`, order);
+    var { data } = await axios.post(`/order`, order);
     return dispatch({
         type: POST_ORDER,
         payload: { status: order.status, data },
@@ -22,7 +22,7 @@ var {data}= await axios.post(`http://localhost:3001/order`, order);
 }
 
 export const getOrder = (order) => async (dispatch) => {
-    var {data} = await axios.get(`http://localhost:3001/order?status=` + order.status);
+    var { data } = await axios.get(`/order?status=` + order.status);
     return dispatch({
         type: GET_ORDERS,
         payload: { status: order.status, data },

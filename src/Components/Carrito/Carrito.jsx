@@ -8,8 +8,6 @@ export default function Carrito() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch()
 
-  console.log("soyCartItem", cart);
-
   return (
     <div className={s.boxcarrito}>
       <div className={s.buttonContainer}>
@@ -21,7 +19,6 @@ export default function Carrito() {
           Clear Cart 🛒
         </button>
       </div>
-      {/* <h4>{Carrito.length}</h4> */}
 
       <div className={s.grid}>
               {cart?.map((product) => (

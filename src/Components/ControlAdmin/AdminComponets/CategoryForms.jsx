@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import { crearCategory } from "../../../Redux/actions";
 import { messageSuccess } from "../../Herramientas/MessageBox";
@@ -12,7 +11,7 @@ export default function CategoryForm(){
     const[formState,setformState]=useState({
         name:'',
     })
-    //algo
+
     function handleOnChange(e){
         e.preventDefault(e)
         const{name,value}=e.target
@@ -30,9 +29,7 @@ export default function CategoryForm(){
    
     
         if(str.length>len){return false}
-          
-           //str=str.split('-').join('')
-           //str=str.split('/').join('')
+
            let primero=/\W/.test(str)
            let segundo=/\d/.test(str)
            return !primero && !segundo 
