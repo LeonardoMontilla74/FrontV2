@@ -21,11 +21,10 @@ export const CREATEPRODUCT = 'CREATEPRODUCT';
 export const UPDATEPRODUCT = 'UPDATEPRODUCT';
 export const CREARCATEGORY = 'CREARCATEGORY';
 
-const URL = 'http://localhost:3001';
 
 export function findOrCreateUser(user) {
     return async function (dispatch) {
-        const res = await axios.post(`${URL}/admin/register`, user);
+        const res = await axios.post(`/admin/register`, user);
         const userDB = res.data;
         dispatch({
             type: FIND_OR_CREATE_USER,
@@ -38,7 +37,7 @@ export function findProduct(name) {
     return async function (dispatch) 
     
     {   console.log(name);
-        const res = await axios.get(`${URL}/paginado?name=${name}`);
+        const res = await axios.get(`/paginado?name=${name}`);
         const product = res.data;
         dispatch({
             type: SEARCH_PRODUCT,
@@ -49,7 +48,7 @@ export function findProduct(name) {
 
 export function obtenerTodosProducts() {
     return (dispatch) => {
-        axios.get(`${URL}/products`)
+        axios.get(`/products`)
             .then((r) => {
                 return dispatch({
                     type: TODOS_PRODUCT,
@@ -63,7 +62,7 @@ export function obtenerTodosProducts() {
 
 export function obtenerTodosCategory() {
     return (dispatch) => {
-        axios.get(`${URL}/category`)
+        axios.get(`/category`)
             .then((r) => {
 
                 return dispatch({
@@ -199,7 +198,7 @@ export function actualizar(arrObj) {
 
 export function createProduct(body) {
     return (dispatch) => {
-        axios.post(`${URL}/createProduct`, body)
+        axios.post(`/createProduct`, body)
             .then(() => {
                 return dispatch({
                     type: CREATEPRODUCT,
@@ -212,8 +211,8 @@ export function createProduct(body) {
 
 export function upDateProduct(id, body) {
     return (dispatch) => {
-        console.log(id, 'voy', body, 'yendo');
-        axios.put(`${URL}/updateproduct/${id}`, body)
+
+        axios.put(`/updateproduct/${id}`, body)
             .then(() => {
                 return dispatch({
                     type: UPDATEPRODUCT,
@@ -225,7 +224,7 @@ export function upDateProduct(id, body) {
 
 export function crearCategory(body) {
     return (dispatch) => {
-        axios.post(`${URL}/crearcategory`, body)
+        axios.post(`/crearcategory`, body)
             .then(() => {
                 return dispatch({
                     type: CREARCATEGORY,
@@ -241,7 +240,7 @@ export function crearCategory(body) {
 export const axiosDataId = (id) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' });
     try {
-        const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+        const { data } = await axios.get(`/products/${id}`);
         data.name = data.name.replace(/[#-]/g, " ");
         data.category = data.category.name.replace(/[#_]/g, " ");
         return dispatch({ type: 'AXIOS_SUCCESS', payload: data });
@@ -254,7 +253,7 @@ export const axiosDataId = (id) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' })
     try {
       const response = await axios.get(
-    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
+          `/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
     
       return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {
@@ -265,10 +264,9 @@ export const axiosDataId = (id) => async (dispatch) => {
 export const axiosCategories = () => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' });
     try {
-        const response = await axios.get(`http://localhost:3001/category`);
+        const response = await axios.get(`/category`);
         return dispatch({ type: 'FETCH_CATEGORIES', payload: response.data });
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
 };
-

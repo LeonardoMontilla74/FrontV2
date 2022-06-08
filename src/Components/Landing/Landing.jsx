@@ -25,7 +25,6 @@ function Landing() {
 
   const crear = useDispatch();
   const userActive = useSelector((state) => state.userActive);
-  const carrito = useSelector((state) => state.cart);
   const { isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
@@ -41,14 +40,11 @@ function Landing() {
     axiosData();
 
     if (isAuthenticated && !userActive.length) {
-      console.log('envie el post');
       crear(findOrCreateUser({
         email: user.email,
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
-        image: user.picture,
-        idRol: 1,
-        shoppingCar: carrito
+        image: user.picture
       }));
     }
 
