@@ -7,11 +7,11 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
-import dotenv from 'dotenv';
 import axios from 'axios';
+import dotenv from "dotenv";
 
 dotenv.config();
-axios.defaults.baseURL = process.env.REACT_APP_URL || 'http://localhost:3001'
+axios.defaults.baseURL = process.env.REACT_APP_URL || "http://localhost:3001";
 
 ReactDOM.render(
   <Auth0Provider
