@@ -1,15 +1,11 @@
-import React,{useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {addReview} from '../../Redux/actionReviews';
 import { useAuth0 } from '@auth0/auth0-react';
-import { getOrder } from '../../Redux/actionsCarrito';
-
-
-//addReview(review, productId)
 
 
 export default function Reviews ({productId}) {
-    const { user, logout} = useAuth0();
+    const { user } = useAuth0();
     const dispatch = useDispatch();
     
     const userEmail = user?.email;
@@ -35,7 +31,7 @@ export default function Reviews ({productId}) {
             if(arrcoment.length < 5){
                 setError({
                     ...error,
-                    name: "El campo tiene que tener al menos 5 palabras"
+                    name: "Must have at least 5 words"
                 })
             }
         }
@@ -43,7 +39,7 @@ export default function Reviews ({productId}) {
             if(!e.target.value){
                 setError({
                     ...error,
-                    name:"Necesita puntuar con rates"
+                    name: "Rate with stars"
                 })
             }
         }
@@ -70,9 +66,7 @@ export default function Reviews ({productId}) {
     function handleClick(e){
         e.preventDefault()
         
-        dispatch(addReview( review, productId))
-        console.log(review, productId)
-        alert("Has agregado un nuevo content")
+        dispatch(addReview(review, productId))
         setReview({
             content: "",
             rate: ""
@@ -84,10 +78,10 @@ export default function Reviews ({productId}) {
     return (
         <div>
             <div>
-                <h3>Agrega tu review</h3>
+                <h3>Add you review</h3>
                 <form onSubmit={handleClick}>
                     <div>
-                    <label>Ingrese su review (minimo 5 palabras)</label>
+                        <label>Review (min 5 words)</label>
                     <br/>
                     <textarea 
                         style={{resize:'none'}}
@@ -100,10 +94,10 @@ export default function Reviews ({productId}) {
                             {error.content}</p>}
                     </div>
                     <div>
-                    <label>stars</label>
+                        <label>Stars</label>
                     
                     <div>
-                        <strong>Star</strong>
+                            <strong>Stars</strong>
                         <select onChange={e => {setRating(e)}}>
                             <option value=""> select... </option>
                             <option value="1"> -1- </option>

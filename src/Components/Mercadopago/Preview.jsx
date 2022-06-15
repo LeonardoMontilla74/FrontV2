@@ -32,9 +32,9 @@ export default function Preview() {
     }
   }, [isAuthenticated, resChangeOrderStatus]);
 
-var today = new Date();
+const today = new Date();
 
-  var date = today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + today.getDate();
+  const date = today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + today.getDate();
 
   return (
     <div>

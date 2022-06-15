@@ -63,7 +63,7 @@ export function findProduct(name) {
 
 export function getPayId(payment_id) {
     return async function (dispatch) {
-        const pay = await axios.get(`http://localhost:3001/purchases/${payment_id}`);
+        const pay = await axios.get(`/purchases/${payment_id}`);
         dispatch({
             type: GET_PAYMENT_ID,
             payload: pay.data
@@ -363,7 +363,7 @@ export function upDateOrder(id, body) {
 
     return (dispatch) => {
 
-        axios.put(`http://localhost:3001/updateStatus/${id}`, body)
+        axios.put(`/updateStatus/${id}`, body)
             .then((r) => {
                 return dispatch({
                     type: UPDATEORDER,
