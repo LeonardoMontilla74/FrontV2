@@ -1,7 +1,6 @@
 import { getError } from '../../utils';
-// import { useDispatch } from "react-redux";
 import axios from 'axios';
-import { useReducer, useEffect, useState } from 'react';
+import { useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const reducer = (state, action) => {
@@ -22,7 +21,7 @@ const reducer = (state, action) => {
   };
 
 export default function FilterCategories(){
-    // const dispatch = useDispatch();
+
     const navigate = useNavigate()
 
     const [{ category, error}, dispatch] =
