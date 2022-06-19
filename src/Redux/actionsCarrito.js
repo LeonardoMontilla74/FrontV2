@@ -70,6 +70,7 @@ export const postAllOrders = (order) => async (dispatch) => {
 }
 
 export const changeOrderStatus = (order) => async (dispatch) => {
+    
     var {data} = await axios.put(`http://localhost:3001/mercadopay`, order)
     return dispatch({
         type: CHANGE_ORDER_STATUS,

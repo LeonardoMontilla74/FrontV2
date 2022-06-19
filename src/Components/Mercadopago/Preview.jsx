@@ -22,7 +22,9 @@ export default function Preview() {
     const ordersIds = inCart.map((e) => e.orders[0].id);
     dispatch(changeOrderStatus({purchaseId: purchaseId, ordersIds: ordersIds}));
     }
+   
   }, [ isAuthenticated, inCart]);
+  //isAuthenticated, inCart
 
   useEffect(() => {
     if(isAuthenticated){
@@ -32,9 +34,12 @@ export default function Preview() {
     }
   }, [isAuthenticated, resChangeOrderStatus]);
 
+  //[isAuthenticated, resChangeOrderStatus]
+
 var today = new Date();
 
   var date = today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + today.getDate();
+  
 
   return (
     <div>
@@ -47,7 +52,7 @@ var today = new Date();
         {products?.length &&
           products?.map((product) => {
             return (
-              <PreviewCard key={product.id} products={product}/>
+              <PreviewCard key={product.id} products={product} isAuthenticated={isAuthenticated}/>
             );
           })}
           </div>
