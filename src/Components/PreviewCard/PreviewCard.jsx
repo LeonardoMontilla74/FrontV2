@@ -9,7 +9,7 @@ export default function Product(props) {
   const { products } = props;
   const dispatch=useDispatch()
   useEffect(()=>{return upStock()},[])
-
+  //console.log(props)
 
   function upStock(){
         if(products.orders&&products.orders[0].amount){
