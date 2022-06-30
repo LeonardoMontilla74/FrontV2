@@ -2,7 +2,7 @@ import axios from 'axios';
 import ordenarBublee from '../Components/Ordenamiento/ordenarNumeros';
 import { getError } from "../Components/Herramientas/utils";
 
-
+export const UPDATESTOCK = 'UPDATESTOCK';
 export const FIND_OR_CREATE_USER = 'FIND_OR_CREATE_USER';
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT = 'TODOS_PRODUCT';
@@ -354,15 +354,13 @@ export function getOrders() {
                     type: GET_ALLORDERS,
                     payload: r.data
                 });
-            })
-            .catch((err) => console.log(err));
+            }).catch((err) => console.log(err));
 
     };
 }
+
 export function upDateOrder(id, body) {
-
     return (dispatch) => {
-
         axios.put(`/updateStatus/${id}`, body)
             .then((r) => {
                 return dispatch({
@@ -371,11 +369,18 @@ export function upDateOrder(id, body) {
                 });
             })
             .catch((err) => console.log(err));
+    };
+}
 
-
-
-
-
-
+export function updateStock(id, body) {
+    return (dispatch) => {
+        axios.put(`/stock/${id}`, body)
+            .then(() => {
+                return dispatch({
+                    type: UPDATESTOCK,
+                    payload: ['update stock']
+                });
+            })
+            .catch((err) => console.log(err));
     };
 }
